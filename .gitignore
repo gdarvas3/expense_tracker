@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local database
+*.db
+*.sqlite3
+
+# Node / frontend
+node_modules/
+dist/
+coverage/
+
+# Environment & editors
+.env
+.env.*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local, tool-specific AI instruction files (AGENTS.md is the shared one)
+CLAUDE.md
