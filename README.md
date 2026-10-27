@@ -45,12 +45,12 @@ _TODO: compare the two debt-simplification implementations._
 
 ### Case 1
 
-- **Problem:**
-- **Tool:**
-- **Prompt:**
-- **Suggestion:**
-- **User decision:**
-- **Verification:**
+- **Problem:**  The specification requires a full-stack web application, but the approved tech stack only defined the backend. A UI technology had to be chosen.
+- **Tool:** Claude Code (Opus 5.5)
+- **Prompt:** The application needs a UI what options do you suggest?
+- **Suggestion:** Server-rendered Jinja2 templates + HTMX. Rationale: single language (Python), no build toolchain, UI testable with the same pytest/TestClient setup, less AI-generated code to review, lower delivery risk. A comparison table against a React SPA was provided.
+- **User decision:** Rejected - React (TypeScript, Vite) was chosen because it provides a clear separation between the frontend and bakcend, and React with Typescript is also the industry standard frontend stack nowadays. 
+- **Verification:** `npm run build` and `npm test` pass; a UI test checks that a non-member sees the 403 error message; all business rules remain covered by the backend acceptance tests (AC-1 … AC-8).
 
 ### Case 2
 
