@@ -276,7 +276,8 @@ npm test                               # Vitest
 npm run lint                           # ESLint (+ typecheck)
 
 # ---- save a test run as evidence (failing → passing) ----
-pytest -v 2>&1 | tee ../docs/test-runs/<yyyy-mm-dd>-<name>.txt
+pytest -v 2>&1 | tee ../docs/test-runs/<yyyy-mm-dd>-<name>.txt              # bash
+pytest -v 2>&1 | Tee-Object ..\docs\test-runs\<yyyy-mm-dd>-<name>.txt       # PowerShell
 ```
 
 The Vite dev server proxies `/api` to the backend, so no CORS setup is needed in development.
