@@ -47,6 +47,7 @@ backend/
   app/
     main.py          # FastAPI app factory, router registration, exception handlers
     database.py      # engine, SessionLocal, Base, get_db dependency
+    exceptions.py    # domain exceptions, each carrying its HTTP status code
     dependencies.py  # get_current_user (X-User-Id), group-membership / admin guards
     models/          # SQLAlchemy ORM models — no business logic
     schemas/         # Pydantic request/response models — no DB access
@@ -56,7 +57,8 @@ backend/
     conftest.py         # in-memory DB, TestClient, user/group fixtures
     test_acceptance.py  # one test per AC (AC-1 … AC-8)
     test_*.py           # unit tests per service
-  requirements.txt
+  requirements.txt   # pinned dependencies
+  pyproject.toml     # pytest configuration
 frontend/
   src/
     api/             # typed API client: the ONLY place that calls fetch

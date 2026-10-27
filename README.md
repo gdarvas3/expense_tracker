@@ -10,15 +10,40 @@ debt-settlement plan.
 
 ## Setup
 
-_TODO: backend and frontend setup steps._
+Requirements: Python 3.12+, Node.js 20+.
+
+### Backend
+
+```bash
+cd backend
+python -m venv .venv
+# Windows: .venv\Scripts\activate    | Linux/macOS: source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Frontend
+
+_TODO_
 
 ## Running the application
 
-_TODO: how to start the backend and the frontend._
+```bash
+cd backend
+uvicorn app.main:app --reload
+```
+
+The API runs on http://127.0.0.1:8000 (Swagger UI: http://127.0.0.1:8000/docs).
+The SQLite database file (`expense_tracker.db`) is created on first start; set
+`DATABASE_URL` to use a different location.
 
 ## Running the tests
 
-_TODO: backend (pytest) and frontend (Vitest) test commands._
+```bash
+cd backend
+pytest -v
+```
+
+Tests use an isolated in-memory SQLite database, so they never touch the local database file.
 
 ## Acceptance criteria coverage
 
