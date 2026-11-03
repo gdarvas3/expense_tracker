@@ -1,0 +1,127 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.5, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\gabor.darvas\source\expense_tracker\backend\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\gabor.darvas\source\expense_tracker\backend
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 78 items
+
+tests/test_acceptance.py::test_ac1_equal_split_gives_each_member_a_quarter FAILED [  1%]
+tests/test_acceptance.py::test_ac2_percentage_split_follows_the_given_percentages FAILED [  2%]
+tests/test_acceptance.py::test_ac3_leftover_cent_goes_to_the_lowest_user_id FAILED [  3%]
+tests/test_acceptance.py::test_ac3_leftover_cents_follow_numeric_user_id_order FAILED [  5%]
+tests/test_acceptance.py::test_ac4_transitive_debt_becomes_a_single_payment FAILED [  6%]
+tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[amount-zero] PASSED [  7%]
+tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[amount-negative] PASSED [  8%]
+tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[percentages-below-100] FAILED [ 10%]
+tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[percentages-above-100] FAILED [ 11%]
+tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[exact-sum-below-total] FAILED [ 12%]
+tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[exact-sum-above-total] FAILED [ 14%]
+tests/test_acceptance.py::test_ac6_member_with_balance_cannot_be_removed FAILED [ 15%]
+tests/test_acceptance.py::test_ac6_member_with_zero_balance_can_be_removed FAILED [ 16%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[GET-] PASSED [ 17%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[GET-/expenses] PASSED [ 19%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[POST-/expenses] PASSED [ 20%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[GET-/balances] PASSED [ 21%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[GET-/settlement-plan] PASSED [ 23%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[POST-/settlements] PASSED [ 24%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[POST-/members] PASSED [ 25%]
+tests/test_acceptance.py::test_ac7_non_member_is_rejected_with_403[DELETE-/members/1] PASSED [ 26%]
+tests/test_acceptance.py::test_ac8_settlement_brings_balances_to_zero FAILED [ 28%]
+tests/test_app.py::test_health_returns_ok PASSED                         [ 29%]
+tests/test_app.py::test_request_validation_error_returns_400_not_422 PASSED [ 30%]
+tests/test_app.py::test_domain_error_maps_to_http_status[validation-400] PASSED [ 32%]
+tests/test_app.py::test_domain_error_maps_to_http_status[unauthorized-401] PASSED [ 33%]
+tests/test_app.py::test_domain_error_maps_to_http_status[forbidden-403] PASSED [ 34%]
+tests/test_app.py::test_domain_error_maps_to_http_status[not_found-404] PASSED [ 35%]
+tests/test_app.py::test_domain_error_maps_to_http_status[conflict-409] PASSED [ 37%]
+tests/test_dependencies.py::test_current_user_is_resolved_from_header PASSED [ 38%]
+tests/test_dependencies.py::test_missing_invalid_or_unknown_user_id_is_unauthorized[None] PASSED [ 39%]
+tests/test_dependencies.py::test_missing_invalid_or_unknown_user_id_is_unauthorized[] PASSED [ 41%]
+tests/test_dependencies.py::test_missing_invalid_or_unknown_user_id_is_unauthorized[abc] PASSED [ 42%]
+tests/test_dependencies.py::test_missing_invalid_or_unknown_user_id_is_unauthorized[-1] PASSED [ 43%]
+tests/test_dependencies.py::test_missing_invalid_or_unknown_user_id_is_unauthorized[1.5] PASSED [ 44%]
+tests/test_dependencies.py::test_missing_invalid_or_unknown_user_id_is_unauthorized[999] PASSED [ 46%]
+tests/test_dependencies.py::test_group_member_gets_their_membership PASSED [ 47%]
+tests/test_dependencies.py::test_non_member_is_forbidden PASSED          [ 48%]
+tests/test_dependencies.py::test_unknown_group_is_not_found PASSED       [ 50%]
+tests/test_dependencies.py::test_admin_passes_admin_guard PASSED         [ 51%]
+tests/test_dependencies.py::test_regular_member_fails_admin_guard PASSED [ 52%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[100.00-10000] PASSED [ 53%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[100-10000_0] PASSED [ 55%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[0.01-1] PASSED [ 56%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[33.3-3330] PASSED [ 57%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[-15.00--1500] PASSED [ 58%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[100-10000_1] PASSED [ 60%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[25.5-2550] PASSED [ 61%]
+tests/test_fixed_point.py::test_parse_hundredths_accepts_up_to_two_decimals[raw_value7-1234] PASSED [ 62%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[1.001] PASSED [ 64%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[abc] PASSED [ 65%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[] PASSED [ 66%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[NaN] PASSED [ 67%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[Infinity] PASSED [ 69%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[True] PASSED [ 70%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[None] PASSED [ 71%]
+tests/test_fixed_point.py::test_parse_hundredths_rejects_invalid_values[raw_value7] PASSED [ 73%]
+tests/test_fixed_point.py::test_format_hundredths_uses_two_decimals[10000-100.00] PASSED [ 74%]
+tests/test_fixed_point.py::test_format_hundredths_uses_two_decimals[2550-25.50] PASSED [ 75%]
+tests/test_fixed_point.py::test_format_hundredths_uses_two_decimals[5-0.05] PASSED [ 76%]
+tests/test_fixed_point.py::test_format_hundredths_uses_two_decimals[0-0.00] PASSED [ 78%]
+tests/test_fixed_point.py::test_format_hundredths_uses_two_decimals[-1500--15.00] PASSED [ 79%]
+tests/test_fixed_point.py::test_format_hundredths_uses_two_decimals[-1--0.01] PASSED [ 80%]
+tests/test_models.py::test_expense_is_stored_with_its_shares PASSED      [ 82%]
+tests/test_models.py::test_expense_amount_must_be_positive PASSED        [ 83%]
+tests/test_models.py::test_settlement_payer_and_payee_must_differ PASSED [ 84%]
+tests/test_models.py::test_user_can_be_member_of_a_group_only_once PASSED [ 85%]
+tests/test_schemas.py::test_expense_create_converts_amount_to_cents_and_percentages_to_basis_points PASSED [ 87%]
+tests/test_schemas.py::test_expense_create_accepts_exact_share_amounts PASSED [ 88%]
+tests/test_schemas.py::test_expense_create_rejects_non_positive_amount[0] PASSED [ 89%]
+tests/test_schemas.py::test_expense_create_rejects_non_positive_amount[0.00] PASSED [ 91%]
+tests/test_schemas.py::test_expense_create_rejects_non_positive_amount[-1.00] PASSED [ 92%]
+tests/test_schemas.py::test_expense_create_rejects_malformed_input[invalid_fields0] PASSED [ 93%]
+tests/test_schemas.py::test_expense_create_rejects_malformed_input[invalid_fields1] PASSED [ 94%]
+tests/test_schemas.py::test_expense_create_rejects_malformed_input[invalid_fields2] PASSED [ 96%]
+tests/test_schemas.py::test_expense_create_rejects_malformed_input[invalid_fields3] PASSED [ 97%]
+tests/test_schemas.py::test_settlement_create_rejects_non_positive_amount PASSED [ 98%]
+tests/test_schemas.py::test_expense_read_serializes_cents_as_decimal_strings PASSED [100%]
+
+================================== FAILURES ===================================
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+E   NotImplementedError
+C:\Users\gabor.darvas\source\expense_tracker\backend\app\services\split.py:15: NotImplementedError
+=========================== short test summary info ===========================
+FAILED tests/test_acceptance.py::test_ac1_equal_split_gives_each_member_a_quarter
+FAILED tests/test_acceptance.py::test_ac2_percentage_split_follows_the_given_percentages
+FAILED tests/test_acceptance.py::test_ac3_leftover_cent_goes_to_the_lowest_user_id
+FAILED tests/test_acceptance.py::test_ac3_leftover_cents_follow_numeric_user_id_order
+FAILED tests/test_acceptance.py::test_ac4_transitive_debt_becomes_a_single_payment
+FAILED tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[percentages-below-100]
+FAILED tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[percentages-above-100]
+FAILED tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[exact-sum-below-total]
+FAILED tests/test_acceptance.py::test_ac5_invalid_split_is_rejected_with_400[exact-sum-above-total]
+FAILED tests/test_acceptance.py::test_ac6_member_with_balance_cannot_be_removed
+FAILED tests/test_acceptance.py::test_ac6_member_with_zero_balance_can_be_removed
+FAILED tests/test_acceptance.py::test_ac8_settlement_brings_balances_to_zero
+======================== 12 failed, 66 passed in 1.44s ========================

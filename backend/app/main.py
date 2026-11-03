@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 from app import models  # noqa: F401  (registers all tables with Base.metadata)
 from app.database import Base, engine
 from app.exceptions import DomainError
-from app.routers import health
+from app.routers import expenses, groups, health, settlements, users
 
 API_PREFIX = "/api"
 
@@ -41,7 +41,8 @@ def create_app() -> FastAPI:
     app = FastAPI(title="Shared Household Expense Splitter", lifespan=lifespan)
     app.add_exception_handler(DomainError, handle_domain_error)
     app.add_exception_handler(RequestValidationError, handle_request_validation_error)
-    app.include_router(health.router, prefix=API_PREFIX)
+    for module in (health, users, groups, expenses, settlements):
+        app.include_router(module.router, prefix=API_PREFIX)
     return app
 
 

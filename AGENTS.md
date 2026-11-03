@@ -55,7 +55,8 @@ backend/
     services/        # business logic (splitting, balances, settlement) — no FastAPI imports
     routers/         # thin HTTP layer: parse → call service → map errors to HTTP status
   tests/
-    conftest.py         # in-memory DB, TestClient, user/group fixtures
+    conftest.py         # in-memory DB, TestClient, `api` fixture
+    api_client.py       # ExpenseApi: HTTP helper so acceptance tests read like the spec
     test_acceptance.py  # one test per AC (AC-1 … AC-8)
     test_*.py           # unit tests per service
   requirements.txt   # pinned dependencies

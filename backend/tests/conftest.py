@@ -9,6 +9,7 @@ from sqlalchemy import Engine, create_engine
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
+from api_client import ExpenseApi
 from app.database import Base, get_db
 from app.main import create_app
 
@@ -51,3 +52,8 @@ def app(session_factory: sessionmaker[Session]) -> FastAPI:
 @pytest.fixture
 def client(app: FastAPI) -> TestClient:
     return TestClient(app)
+
+
+@pytest.fixture
+def api(client: TestClient) -> ExpenseApi:
+    return ExpenseApi(client)
