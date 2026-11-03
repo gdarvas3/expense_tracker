@@ -27,11 +27,20 @@ def engine() -> Iterator[Engine]:
 
 
 @pytest.fixture
-def app(engine: Engine) -> FastAPI:
-    test_session_factory = sessionmaker(bind=engine, autoflush=False)
+def session_factory(engine: Engine) -> sessionmaker[Session]:
+    return sessionmaker(bind=engine, autoflush=False)
 
+
+@pytest.fixture
+def db_session(session_factory: sessionmaker[Session]) -> Iterator[Session]:
+    with session_factory() as session:
+        yield session
+
+
+@pytest.fixture
+def app(session_factory: sessionmaker[Session]) -> FastAPI:
     def get_test_db() -> Iterator[Session]:
-        with test_session_factory() as session:
+        with session_factory() as session:
             yield session
 
     application = create_app()

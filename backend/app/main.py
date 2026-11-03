@@ -8,6 +8,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
+from app import models  # noqa: F401  (registers all tables with Base.metadata)
 from app.database import Base, engine
 from app.exceptions import DomainError
 from app.routers import health

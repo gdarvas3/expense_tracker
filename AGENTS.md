@@ -48,6 +48,7 @@ backend/
     main.py          # FastAPI app factory, router registration, exception handlers
     database.py      # engine, SessionLocal, Base, get_db dependency
     exceptions.py    # domain exceptions, each carrying its HTTP status code
+    enums.py         # MemberRole, SplitType — shared by models and schemas
     dependencies.py  # get_current_user (X-User-Id), group-membership / admin guards
     models/          # SQLAlchemy ORM models — no business logic
     schemas/         # Pydantic request/response models — no DB access
@@ -98,6 +99,11 @@ Frontend layer rules:
 - The API accepts/returns amounts as decimal strings or numbers with at most 2 decimals
   (e.g. `"100.00"`); conversion to cents happens in the schema layer via `Decimal`, never `float`.
 - Percentages are stored as integer **basis points** (100% = 10000, 33.33% = 3333).
+- Both are "hundredths": use `HundredthsInput` / `HundredthsOutput` from
+  `app/schemas/fixed_point.py` — never write another conversion.
+- **Naming:** in Python, money attributes end in `_cents` and percentages in `_basis_points`
+  (`amount_cents`, `share_cents`); the JSON field names are `amount` / `percentage`
+  (Pydantic aliases).
 
 ### Splitting
 - Split types: `equal`, `percentage`, `exact`.
