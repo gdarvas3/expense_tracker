@@ -1,13 +1,12 @@
-from collections.abc import Iterable
-
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.enums import MemberRole
-from app.exceptions import ConflictError, NotFoundError, ValidationError
+from app.exceptions import ConflictError, NotFoundError
 from app.models import Group, Membership, User
 from app.schemas.group import GroupCreate
 from app.services.balance_service import calculate_balances
+from app.services.membership import member_ids
 
 
 def create_group(db: Session, data: GroupCreate, creator: User) -> Group:
@@ -55,17 +54,3 @@ def remove_member(db: Session, group: Group, user_id: int) -> None:
     db.delete(membership)
     db.commit()
 
-
-def member_ids(group: Group) -> set[int]:
-    return {membership.user_id for membership in group.memberships}
-
-
-def ensure_members(group: Group, user_ids: Iterable[int]) -> None:
-    """Raise if any user ID does not belong to the group.
-
-    Raises:
-        ValidationError: If a user is not a member; such input is invalid, not forbidden.
-    """
-    outsiders = set(user_ids) - member_ids(group)
-    if outsiders:
-        raise ValidationError(f"Users are not members of this group: {sorted(outsiders)}.")

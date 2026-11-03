@@ -4,7 +4,7 @@ from app.exceptions import ValidationError
 from app.models import Group, Settlement
 from app.schemas.settlement import SettlementCreate
 from app.services.balance_service import calculate_balances
-from app.services.group_service import ensure_members
+from app.services.membership import ensure_members
 from app.services.settlement import Transfer, simplify_debts
 
 

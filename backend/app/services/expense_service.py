@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.exceptions import ValidationError
 from app.models import Expense, ExpenseShare, Group
 from app.schemas.expense import ExpenseCreate, ParticipantInput
-from app.services.group_service import ensure_members
+from app.services.membership import ensure_members
 from app.services.split import calculate_shares
 
 
