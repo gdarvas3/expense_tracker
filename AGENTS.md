@@ -31,12 +31,13 @@ failing → passing test run, and documented AI decisions.
 
 | Concern    | Choice                                              |
 |------------|-----------------------------------------------------|
-| Language   | TypeScript (`strict: true`)                         |
-| Framework  | React 18 + Vite                                     |
-| Routing    | React Router                                        |
+| Language   | TypeScript 7 (`strict: true`)                       |
+| Framework  | React 19 + Vite 8                                   |
+| Routing    | React Router (`react-router`)                       |
 | HTTP       | native `fetch` wrapped in one typed API client (`src/api/`) |
-| Styling    | plain CSS modules (no UI framework)                 |
-| Tests      | Vitest + React Testing Library                      |
+| Styling    | one global stylesheet (`src/index.css`), no UI framework |
+| Tests      | Vitest + React Testing Library + jsdom              |
+| Lint       | oxlint + local plugin `lint/clean-code-plugin.js` (enforces §6.2) |
 
 Do not add new dependencies (Python or npm) without asking the user first.
 
@@ -63,12 +64,15 @@ backend/
   pyproject.toml     # pytest configuration
 frontend/
   src/
-    api/             # typed API client: the ONLY place that calls fetch
-    types/           # TypeScript types mirroring the backend schemas
-    pages/           # route-level components (GroupList, GroupDetail, …)
-    components/      # reusable presentational components
-    hooks/           # data-fetching / state hooks (useGroup, useBalances, …)
-    utils/money.ts   # cents ↔ display formatting
+    api/client.ts    # apiRequest + ApiError: the ONLY place that calls fetch
+    api/endpoints.ts # one typed function per backend endpoint
+    types/api.ts     # TypeScript types mirroring the backend schemas
+    context/         # current user ("Log in as…"), persisted in localStorage
+    hooks/           # useApiData: load / error / reload state for one API call
+    pages/           # route-level components (LoginPage, GroupListPage, GroupDetailPage)
+    components/      # presentational components; RequireUser is the route guard
+    test/            # Vitest setup and the fetch mock
+  lint/              # oxlint JS plugin: clean-code/no-lambdas
   package.json
 docs/
   test-runs/         # saved test outputs (failing → passing evidence)
@@ -87,8 +91,8 @@ Frontend layer rules:
   the backend still enforces it (AC-5).
 - Components never call `fetch` directly — only through `src/api/`.
 - Pages compose hooks + components; presentational components receive data via props.
-- Money is kept as integer cents in the frontend too; format only at display time
-  (`utils/money.ts`), parse user input to cents without floating-point arithmetic.
+- The frontend does no money arithmetic: it shows the decimal strings the API returns
+  (`"100.00"`) and sends user input as strings; the backend parses and validates it.
 - The current user is chosen on a "Log in as…" screen (user dropdown), kept in React context
   (and `localStorage`), and sent by the API client as the `X-User-Id` header on every request.
 - API errors (400/401/403/404/409) are shown to the user with a readable message.
@@ -226,8 +230,10 @@ The rules of §6.1 apply to TypeScript too. Arrow functions are TypeScript's lam
   ```
   Per-item handlers go into the item component (`<MemberRow>` owns its own
   `handleRemoveClick`) instead of being created inline in the parent's `map`.
-- Exception: callbacks whose signature is fixed by a library and that cannot be named
-  sensibly (e.g. a `useEffect` cleanup) may be named local functions — still not anonymous.
+- Callbacks passed to library functions (`useEffect`, `useCallback`, Vitest's
+  `describe`/`it`) are named function expressions: `useEffect(function loadData() { … })`.
+- Enforced by `npm run lint`: the local rule `clean-code/no-lambdas` reports every arrow
+  function and anonymous function expression. Never disable it.
 - `strict` TypeScript, **no `any`**; explicit return types on exported functions.
 - One component per file; file name = component name (`ExpenseForm.tsx`).
 - No magic strings for API paths or split types — use shared constants / union types.
@@ -279,8 +285,10 @@ pytest -k ac4 -v                       # a single AC
 # ---- frontend (from frontend/) ----
 npm install
 npm run dev                            # http://localhost:5173, proxies /api to :8000
-npm test                               # Vitest
-npm run lint                           # ESLint (+ typecheck)
+npm test                               # Vitest (once); npm run test:watch for watch mode
+npm run lint                           # oxlint, warnings fail the run
+npm run typecheck                      # tsc -b
+npm run build                          # typecheck + production build into dist/
 
 # ---- save a test run as evidence (failing → passing) ----
 pytest -v 2>&1 | tee ../docs/test-runs/<yyyy-mm-dd>-<name>.txt              # bash

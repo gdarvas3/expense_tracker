@@ -23,15 +23,26 @@ pip install -r requirements.txt
 
 ### Frontend
 
-_TODO_
+```bash
+cd frontend
+npm install
+```
 
 ## Running the application
+
+Start the backend and the frontend in two terminals:
 
 ```bash
 cd backend
 uvicorn app.main:app --reload
 ```
 
+```bash
+cd frontend
+npm run dev
+```
+
+Open http://localhost:5173. The Vite dev server forwards `/api` requests to the backend.
 The API runs on http://127.0.0.1:8000 (Swagger UI: http://127.0.0.1:8000/docs).
 The SQLite database file (`expense_tracker.db`) is created on first start; set
 `DATABASE_URL` to use a different location.
@@ -44,6 +55,13 @@ pytest -v
 ```
 
 Tests use an isolated in-memory SQLite database, so they never touch the local database file.
+
+```bash
+cd frontend
+npm test            # Vitest + React Testing Library (fetch is mocked)
+npm run lint        # oxlint, including the no-lambdas rule from AGENTS.md
+npm run typecheck
+```
 
 ## Acceptance criteria coverage
 

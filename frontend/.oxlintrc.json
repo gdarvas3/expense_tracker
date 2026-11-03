@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "jsPlugins": ["./lint/clean-code-plugin.js"],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }],
+    "clean-code/no-lambdas": "error",
+    "func-style": ["error", "declaration"],
+    "typescript/no-explicit-any": "error",
+    "typescript/explicit-function-return-type": "error"
+  }
+}
