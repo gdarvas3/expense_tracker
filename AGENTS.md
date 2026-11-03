@@ -68,10 +68,10 @@ frontend/
     api/endpoints.ts # one typed function per backend endpoint
     types/api.ts     # TypeScript types mirroring the backend schemas
     context/         # current user ("Log in as…"), persisted in localStorage
-    hooks/           # useApiData: load / error / reload state for one API call
+    hooks/           # useApiData (load / error / reload), useAsyncAction (user-triggered calls)
     pages/           # route-level components (LoginPage, GroupListPage, GroupDetailPage)
     components/      # presentational components; RequireUser is the route guard
-    test/            # Vitest setup and the fetch mock
+    test/            # Vitest setup, fetch mock, renderApp helper, shared fixtures
   lint/              # oxlint JS plugin: clean-code/no-lambdas
   package.json
 docs/
@@ -96,6 +96,8 @@ Frontend layer rules:
 - The current user is chosen on a "Log in as…" screen (user dropdown), kept in React context
   (and `localStorage`), and sent by the API client as the `X-User-Id` header on every request.
 - API errors (400/401/403/404/409) are shown to the user with a readable message.
+  User-triggered calls (form submits, buttons) go through `useAsyncAction`, which keeps the
+  error for display; do not write another try/catch for that.
 
 ## 4. Domain rules (from the approved specification — do not change)
 

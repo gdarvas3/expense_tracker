@@ -62,6 +62,54 @@ form {
   margin-bottom: 1rem;
 }
 
+form.stacked {
+  display: grid;
+  /* Fixed label column: a max-content track would widen when the full-width error appears. */
+  grid-template-columns: 7rem minmax(0, 20rem);
+}
+
+form.stacked fieldset,
+form.stacked button,
+form.stacked .error {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+}
+
+.participants {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.participant {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
+}
+
+.participant input[inputmode='decimal'] {
+  width: 6rem;
+}
+
+.link-button {
+  margin-left: 0.5rem;
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+section {
+  margin-top: 1.5rem;
+}
+
 input,
 select,
 button {

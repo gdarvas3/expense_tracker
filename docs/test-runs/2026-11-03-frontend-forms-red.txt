@@ -1,0 +1,2131 @@
+
+ RUN  v5.1.0 C:/Users/gabor.darvas/source/expense_tracker/frontend
+
+ ✓ src/api/client.test.ts > apiRequest > sends the current user as the X-User-Id header 5ms
+ ✓ src/api/client.test.ts > apiRequest > sends a JSON body 1ms
+ ✓ src/api/client.test.ts > apiRequest > returns undefined for 204 No Content 0ms
+ ✓ src/api/client.test.ts > apiRequest > throws an ApiError carrying the status and the backend message 2ms
+ ✓ src/api/client.test.ts > apiRequest > joins validation issues into one readable message 1ms
+ ✓ src/api/client.test.ts > describeError > uses the message of an ApiError and a generic text otherwise 0ms
+ × src/components/SettlementForm.test.tsx > SettlementForm > submits a payment from the caller to the chosen member (AC-8) 24ms
+   → Unable to find a label with the text of: To
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ × src/components/SettlementForm.test.tsx > SettlementForm > shows the backend error 2ms
+   → Unable to find a label with the text of: To
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ × src/components/ExpenseForm.test.tsx > ExpenseForm > submits an equal split among all members by default 30ms
+   → Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ × src/components/ExpenseForm.test.tsx > ExpenseForm > submits a percentage per participant 2ms
+   → Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ × src/components/ExpenseForm.test.tsx > ExpenseForm > leaves out unticked members in an exact split 2ms
+   → Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ × src/components/ExpenseForm.test.tsx > ExpenseForm > shows the backend error and keeps the input (AC-5) 2ms
+   → Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ✓ src/App.test.tsx > App > redirects to the login page when nobody is logged in 112ms
+ ✓ src/App.test.tsx > App > logs in as the chosen user and shows their groups 94ms
+ ✓ src/App.test.tsx > App > shows the group members, balances and settlement plan 31ms
+ ✓ src/App.test.tsx > App > shows the backend message when a non-member opens a group (AC-7) 15ms
+ × src/pages/GroupDetailPage.test.tsx > GroupDetailPage > lists the expenses of the group 1039ms
+   → Unable to find role="table" and name "Expenses"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ × src/pages/GroupDetailPage.test.tsx > GroupDetailPage > records an expense and reloads the balances 1010ms
+   → Unable to find role="form" and name "New expense"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ × src/pages/GroupDetailPage.test.tsx > GroupDetailPage > records a settlement and reloads the plan (AC-8) 1015ms
+   → Unable to find role="form" and name "Record a payment"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Bob
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Bob
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ × src/pages/GroupDetailPage.test.tsx > GroupDetailPage > lets the admin add a member who is not in the group yet 1024ms
+   → Unable to find role="form" and name "Add member"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ × src/pages/GroupDetailPage.test.tsx > GroupDetailPage > shows why a member with a balance cannot be removed (AC-6) 1021ms
+   → Unable to find role="button" and name "Remove Bob"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ ✓ src/pages/GroupDetailPage.test.tsx > GroupDetailPage > hides member management from regular members 16ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/GroupDetailPage.test.tsx > GroupDetailPage > lists the expenses of the group
+TestingLibraryElementError: Unable to find role="table" and name "Expenses"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ listsExpenses src/pages/GroupDetailPage.test.tsx:29:39
+     27|     renderApp('/groups/10', GROUP_ROUTES)
+     28|
+     29|     const expenseTable = await screen.findByRole('table', { name: 'Exp…
+       |                                       ^
+     30|     expect(within(expenseTable).getByText('Groceries')).toBeInTheDocum…
+     31|     expect(within(expenseTable).getByText('80.00')).toBeInTheDocument()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  src/pages/GroupDetailPage.test.tsx > GroupDetailPage > records an expense and reloads the balances
+TestingLibraryElementError: Unable to find role="form" and name "New expense"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ recordsExpense src/pages/GroupDetailPage.test.tsx:41:38
+     39|     })
+     40|     const user = userEvent.setup()
+     41|     const expenseForm = await screen.findByRole('form', { name: 'New e…
+       |                                      ^
+     42|
+     43|     await user.type(within(expenseForm).getByLabelText('Description'),…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  src/pages/GroupDetailPage.test.tsx > GroupDetailPage > records a settlement and reloads the plan (AC-8)
+TestingLibraryElementError: Unable to find role="form" and name "Record a payment"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Bob
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Bob
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ recordsSettlement src/pages/GroupDetailPage.test.tsx:61:41
+     59|     })
+     60|     const user = userEvent.setup()
+     61|     const settlementForm = await screen.findByRole('form', { name: 'Re…
+       |                                         ^
+     62|
+     63|     await user.selectOptions(within(settlementForm).getByLabelText('To…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  src/pages/GroupDetailPage.test.tsx > GroupDetailPage > lets the admin add a member who is not in the group yet
+TestingLibraryElementError: Unable to find role="form" and name "Add member"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ addsMember src/pages/GroupDetailPage.test.tsx:78:37
+     76|     })
+     77|     const user = userEvent.setup()
+     78|     const memberForm = await screen.findByRole('form', { name: 'Add me…
+       |                                     ^
+     79|
+     80|     await user.selectOptions(within(memberForm).getByLabelText('User')…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  src/pages/GroupDetailPage.test.tsx > GroupDetailPage > shows why a member with a balance cannot be removed (AC-6)
+TestingLibraryElementError: Unable to find role="button" and name "Remove Bob"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <header
+      class="app-header"
+    >
+      <span>
+        Logged in as 
+        Alice
+      </span>
+      <button
+        type="button"
+      >
+        Log out
+      </button>
+    </header>
+    <main>
+      <a
+        data-discover="true"
+        href="/"
+      >
+        ← My groups
+      </a>
+      <h1>
+        Flat 4B
+      </h1>
+      <h2>
+        Members
+      </h2>
+      <ul>
+        <li>
+          Alice
+           (admin)
+        </li>
+        <li>
+          Bob
+        </li>
+      </ul>
+      <h2>
+        Balances
+      </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Member
+            </th>
+            <th
+              class="amount"
+            >
+              Net balance
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Alice
+            </td>
+            <td
+              class="amount"
+            >
+              40.00
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bob
+            </td>
+            <td
+              class="amount negative"
+            >
+              -40.00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>
+        Settlement plan
+      </h2>
+      <ul>
+        <li>
+          Bob
+           pays 
+          Alice
+           
+          40.00
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ showsRemovalConflict src/pages/GroupDetailPage.test.tsx:97:35
+     95|     const user = userEvent.setup()
+     96|
+     97|     await user.click(await screen.findByRole('button', { name: 'Remove…
+       |                                   ^
+     98|
+     99|     expect(await screen.findByRole('alert')).toHaveTextContent(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  src/components/ExpenseForm.test.tsx > ExpenseForm > submits an equal split among all members by default
+TestingLibraryElementError: Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getAllByLabelText node_modules/@testing-library/dom/dist/queries/label-text.js:111:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ submitsEqualSplit src/components/ExpenseForm.test.tsx:23:28
+     21|     const user = userEvent.setup()
+     22|
+     23|     await user.type(screen.getByLabelText('Description'), 'Groceries')
+       |                            ^
+     24|     await user.type(screen.getByLabelText('Amount'), '90.00')
+     25|     await user.click(screen.getByRole('button', { name: 'Add expense' …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  src/components/ExpenseForm.test.tsx > ExpenseForm > submits a percentage per participant
+TestingLibraryElementError: Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getAllByLabelText node_modules/@testing-library/dom/dist/queries/label-text.js:111:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ submitsPercentages src/components/ExpenseForm.test.tsx:42:28
+     40|     const user = userEvent.setup()
+     41|
+     42|     await user.type(screen.getByLabelText('Description'), 'Internet')
+       |                            ^
+     43|     await user.type(screen.getByLabelText('Amount'), '30.00')
+     44|     await user.selectOptions(screen.getByLabelText('Paid by'), 'Bob')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  src/components/ExpenseForm.test.tsx > ExpenseForm > leaves out unticked members in an exact split
+TestingLibraryElementError: Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getAllByLabelText node_modules/@testing-library/dom/dist/queries/label-text.js:111:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ leavesOutUntickedMembers src/components/ExpenseForm.test.tsx:67:28
+     65|     const user = userEvent.setup()
+     66|
+     67|     await user.type(screen.getByLabelText('Description'), 'Taxi')
+       |                            ^
+     68|     await user.type(screen.getByLabelText('Amount'), '25.00')
+     69|     await user.selectOptions(screen.getByLabelText('Split'), 'exact')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  src/components/ExpenseForm.test.tsx > ExpenseForm > shows the backend error and keeps the input (AC-5)
+TestingLibraryElementError: Unable to find a label with the text of: Description
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getAllByLabelText node_modules/@testing-library/dom/dist/queries/label-text.js:111:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ showsBackendError src/components/ExpenseForm.test.tsx:89:28
+     87|     const user = userEvent.setup()
+     88|
+     89|     await user.type(screen.getByLabelText('Description'), 'Internet')
+       |                            ^
+     90|     await user.type(screen.getByLabelText('Amount'), '30.00')
+     91|     await user.click(screen.getByRole('button', { name: 'Add expense' …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  src/components/SettlementForm.test.tsx > SettlementForm > submits a payment from the caller to the chosen member (AC-8)
+TestingLibraryElementError: Unable to find a label with the text of: To
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getAllByLabelText node_modules/@testing-library/dom/dist/queries/label-text.js:111:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ submitsPayment src/components/SettlementForm.test.tsx:28:37
+     26|     const user = userEvent.setup()
+     27|
+     28|     await user.selectOptions(screen.getByLabelText('To'), 'Alice')
+       |                                     ^
+     29|     await user.type(screen.getByLabelText('Amount'), '40.00')
+     30|     await user.click(screen.getByRole('button', { name: 'Record paymen…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  src/components/SettlementForm.test.tsx > SettlementForm > shows the backend error
+TestingLibraryElementError: Unable to find a label with the text of: To
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getAllByLabelText node_modules/@testing-library/dom/dist/queries/label-text.js:111:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ showsBackendError src/components/SettlementForm.test.tsx:43:37
+     41|     const user = userEvent.setup()
+     42|
+     43|     await user.selectOptions(screen.getByLabelText('To'), 'Bob')
+       |                                     ^
+     44|     await user.type(screen.getByLabelText('Amount'), '5.00')
+     45|     await user.click(screen.getByRole('button', { name: 'Record paymen…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+
+ Test Files  3 failed | 2 passed (5)
+      Tests  11 failed | 11 passed (22)
+   Start at  11:43:00
+   Duration  7.80s (environment 51%, tests 32%, setup 10%, import 5%, transform 1%)
+

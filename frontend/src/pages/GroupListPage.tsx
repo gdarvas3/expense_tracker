@@ -1,10 +1,10 @@
 import { useCallback, useState, type ChangeEvent, type FormEvent, type ReactElement } from 'react'
 import { Link } from 'react-router'
-import { describeError } from '../api/client'
 import { createGroup, listGroups } from '../api/endpoints'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { useLoggedInUser } from '../context/currentUser'
 import { useApiData } from '../hooks/useApiData'
+import { useAsyncAction } from '../hooks/useAsyncAction'
 import type { Group } from '../types/api'
 
 export function GroupListPage(): ReactElement {
@@ -17,21 +17,21 @@ export function GroupListPage(): ReactElement {
   )
   const groups = useApiData(loadGroups)
   const [newGroupName, setNewGroupName] = useState('')
-  const [createError, setCreateError] = useState<string | null>(null)
+  const creation = useAsyncAction(createAndShowGroup)
 
   function handleNameChange(event: ChangeEvent<HTMLInputElement>): void {
     setNewGroupName(event.target.value)
   }
 
+  async function createAndShowGroup(name: string): Promise<void> {
+    await createGroup(user.id, name)
+    groups.reload()
+  }
+
   async function handleCreateGroup(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault()
-    try {
-      await createGroup(user.id, newGroupName.trim())
+    if (await creation.run(newGroupName.trim())) {
       setNewGroupName('')
-      setCreateError(null)
-      groups.reload()
-    } catch (error) {
-      setCreateError(describeError(error))
     }
   }
 
@@ -48,7 +48,7 @@ export function GroupListPage(): ReactElement {
         <input id="new-group-name" value={newGroupName} onChange={handleNameChange} required />
         <button type="submit">Create group</button>
       </form>
-      <ErrorMessage message={createError} />
+      <ErrorMessage message={creation.error} />
     </>
   )
 }

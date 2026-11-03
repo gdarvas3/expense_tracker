@@ -1,35 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router'
 import { describe, expect, it } from 'vitest'
-import { App } from './App'
-import { CurrentUserProvider } from './context/CurrentUserProvider'
 import { storeUser } from './context/userStorage'
-import { mockFetch, type MockRoutes } from './test/fetchMock'
-
-const ALICE = { id: 1, name: 'Alice' }
-const BOB = { id: 2, name: 'Bob' }
-
-const GROUP = {
-  id: 10,
-  name: 'Flat 4B',
-  created_at: '2026-11-03T10:00:00',
-  members: [
-    { user_id: 1, role: 'admin' },
-    { user_id: 2, role: 'member' },
-  ],
-}
-
-function renderApp(startPath: string, routes: MockRoutes): void {
-  mockFetch(routes)
-  render(
-    <CurrentUserProvider>
-      <MemoryRouter initialEntries={[startPath]}>
-        <App />
-      </MemoryRouter>
-    </CurrentUserProvider>,
-  )
-}
+import { ALICE, BOB, GROUP } from './test/fixtures'
+import { renderApp } from './test/renderApp'
 
 describe('App', function appSuite() {
   it('redirects to the login page when nobody is logged in', async function redirectsToTheLoginPageWhenNobodyIsLoggedIn() {
@@ -57,6 +31,7 @@ describe('App', function appSuite() {
     renderApp('/groups/10', {
       'GET /api/users': { body: [ALICE, BOB] },
       'GET /api/groups/10': { body: GROUP },
+      'GET /api/groups/10/expenses': { body: [] },
       'GET /api/groups/10/balances': {
         body: [
           { user_id: 1, net: '40.00' },

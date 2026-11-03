@@ -81,13 +81,22 @@ End-to-end API tests live in `backend/tests/test_acceptance.py` (run one AC with
 
 ## Failing → passing test run
 
-Development followed TDD: the acceptance tests were written first, against an API whose
-business logic was stubbed with `NotImplementedError`.
+Development followed TDD: the tests were written first and run against stubs, so the
+failing run shows assertion failures of the real tests, not import errors.
+
+**Backend** — business logic stubbed with `NotImplementedError`:
 
 | Run | Result | Commit |
 |-----|--------|--------|
 | [`2026-11-03-acceptance-red.txt`](docs/test-runs/2026-11-03-acceptance-red.txt) | 12 failed, 66 passed — every business-logic test fails; AC-7 and schema-level AC-5 already pass | `ef03804` |
-| [`2026-11-03-acceptance-green.txt`](docs/test-runs/2026-11-03-acceptance-green.txt) | 131 passed — after implementing splitting, balances and debt simplification | _this commit_ |
+| [`2026-11-03-acceptance-green.txt`](docs/test-runs/2026-11-03-acceptance-green.txt) | 131 passed — after implementing splitting, balances and debt simplification | `01df994` |
+
+**Frontend** — expense and settlement forms stubbed as components that render nothing:
+
+| Run | Result |
+|-----|--------|
+| [`2026-11-03-frontend-forms-red.txt`](docs/test-runs/2026-11-03-frontend-forms-red.txt) | 11 failed, 11 passed — every form and group-page test fails |
+| [`2026-11-03-frontend-forms-green.txt`](docs/test-runs/2026-11-03-frontend-forms-green.txt) | 22 passed — after implementing the forms, member management and expense list |
 
 ## Dual-AI implementation (AC-4)
 

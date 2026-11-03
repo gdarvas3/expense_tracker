@@ -1,10 +1,10 @@
 import { useState, type ChangeEvent, type FormEvent, type ReactElement } from 'react'
 import { Navigate } from 'react-router'
-import { describeError } from '../api/client'
 import { createUser, listUsers } from '../api/endpoints'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { useCurrentUser } from '../context/currentUser'
 import { useApiData } from '../hooks/useApiData'
+import { useAsyncAction } from '../hooks/useAsyncAction'
 import type { User } from '../types/api'
 
 /** "Log in as…": pick an existing user or create a new one (no passwords, see AGENTS.md §4). */
@@ -13,7 +13,7 @@ export function LoginPage(): ReactElement {
   const users = useApiData(listUsers)
   const [selectedUserId, setSelectedUserId] = useState('')
   const [newUserName, setNewUserName] = useState('')
-  const [createError, setCreateError] = useState<string | null>(null)
+  const creation = useAsyncAction(createAndLogIn)
 
   if (user !== null) {
     return <Navigate to="/" replace />
@@ -39,13 +39,13 @@ export function LoginPage(): ReactElement {
     }
   }
 
-  async function handleCreateUser(event: FormEvent<HTMLFormElement>): Promise<void> {
+  async function createAndLogIn(name: string): Promise<void> {
+    logIn(await createUser(name))
+  }
+
+  function handleCreateUser(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault()
-    try {
-      logIn(await createUser(newUserName.trim()))
-    } catch (error) {
-      setCreateError(describeError(error))
-    }
+    void creation.run(newUserName.trim())
   }
 
   return (
@@ -69,7 +69,7 @@ export function LoginPage(): ReactElement {
         <input id="new-user-name" value={newUserName} onChange={handleNameChange} required />
         <button type="submit">Create and log in</button>
       </form>
-      <ErrorMessage message={createError} />
+      <ErrorMessage message={creation.error} />
     </main>
   )
 }

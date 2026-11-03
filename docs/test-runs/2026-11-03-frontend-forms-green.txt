@@ -1,0 +1,31 @@
+
+ RUN  v5.1.0 C:/Users/gabor.darvas/source/expense_tracker/frontend
+
+ ✓ src/api/client.test.ts > apiRequest > sends the current user as the X-User-Id header 5ms
+ ✓ src/api/client.test.ts > apiRequest > sends a JSON body 2ms
+ ✓ src/api/client.test.ts > apiRequest > returns undefined for 204 No Content 0ms
+ ✓ src/api/client.test.ts > apiRequest > throws an ApiError carrying the status and the backend message 2ms
+ ✓ src/api/client.test.ts > apiRequest > joins validation issues into one readable message 1ms
+ ✓ src/api/client.test.ts > describeError > uses the message of an ApiError and a generic text otherwise 0ms
+ ✓ src/components/SettlementForm.test.tsx > SettlementForm > submits a payment from the caller to the chosen member (AC-8) 368ms
+ ✓ src/pages/GroupDetailPage.test.tsx > GroupDetailPage > lists the expenses of the group 144ms
+ ✓ src/App.test.tsx > App > redirects to the login page when nobody is logged in 124ms
+ ✓ src/App.test.tsx > App > logs in as the chosen user and shows their groups 171ms
+ ✓ src/components/SettlementForm.test.tsx > SettlementForm > shows the backend error 248ms
+ ✓ src/components/ExpenseForm.test.tsx > ExpenseForm > submits an equal split among all members by default 537ms
+ ✓ src/App.test.tsx > App > shows the group members, balances and settlement plan 61ms
+ ✓ src/App.test.tsx > App > shows the backend message when a non-member opens a group (AC-7) 25ms
+ ✓ src/pages/GroupDetailPage.test.tsx > GroupDetailPage > records an expense and reloads the balances 403ms
+ ✓ src/pages/GroupDetailPage.test.tsx > GroupDetailPage > records a settlement and reloads the plan (AC-8) 228ms
+ ✓ src/pages/GroupDetailPage.test.tsx > GroupDetailPage > lets the admin add a member who is not in the group yet 134ms
+ ✓ src/pages/GroupDetailPage.test.tsx > GroupDetailPage > shows why a member with a balance cannot be removed (AC-6) 76ms
+ ✓ src/pages/GroupDetailPage.test.tsx > GroupDetailPage > hides member management from regular members 42ms
+ ✓ src/components/ExpenseForm.test.tsx > ExpenseForm > submits a percentage per participant 666ms
+ ✓ src/components/ExpenseForm.test.tsx > ExpenseForm > leaves out unticked members in an exact split 576ms
+ ✓ src/components/ExpenseForm.test.tsx > ExpenseForm > shows the backend error and keeps the input (AC-5) 365ms
+
+ Test Files  5 passed (5)
+      Tests  22 passed (22)
+   Start at  11:45:00
+   Duration  4.79s (environment 55%, tests 25%, setup 11%, import 6%, transform 2%)
+
