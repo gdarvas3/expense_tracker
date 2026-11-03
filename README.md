@@ -47,20 +47,29 @@ Tests use an isolated in-memory SQLite database, so they never touch the local d
 
 ## Acceptance criteria coverage
 
-| AC   | Description                  | Test |
-|------|------------------------------|------|
-| AC-1 | Equal split                  | _TODO_ |
-| AC-2 | Percentage split             | _TODO_ |
-| AC-3 | Penny rounding               | _TODO_ |
-| AC-4 | Transitive debt simplification | _TODO_ |
-| AC-5 | Invalid split rejected (400) | _TODO_ |
-| AC-6 | Removal with balance rejected (409) | _TODO_ |
-| AC-7 | Non-member access rejected (403) | _TODO_ |
-| AC-8 | Settlement zeroes balances   | _TODO_ |
+End-to-end API tests live in `backend/tests/test_acceptance.py` (run one AC with
+`pytest -k ac4 -v`); the business rules also have unit tests.
+
+| AC   | Description                         | Acceptance test(s)                                  | Unit tests |
+|------|-------------------------------------|-----------------------------------------------------|------------|
+| AC-1 | Equal split                         | `test_ac1_equal_split_gives_each_member_a_quarter`  | `test_split.py`, `test_balance.py` |
+| AC-2 | Percentage split                    | `test_ac2_percentage_split_follows_the_given_percentages` | `test_split.py` |
+| AC-3 | Penny rounding                      | `test_ac3_leftover_cent_goes_to_the_lowest_user_id`, `test_ac3_leftover_cents_follow_numeric_user_id_order` | `test_split.py` |
+| AC-4 | Transitive debt simplification      | `test_ac4_transitive_debt_becomes_a_single_payment` | `test_settlement.py` |
+| AC-5 | Invalid split rejected (400)        | `test_ac5_invalid_split_is_rejected_with_400` (6 cases) | `test_split.py`, `test_schemas.py` |
+| AC-6 | Removal with balance rejected (409) | `test_ac6_member_with_balance_cannot_be_removed`, `test_ac6_member_with_zero_balance_can_be_removed` | — |
+| AC-7 | Non-member access rejected (403)    | `test_ac7_non_member_is_rejected_with_403` (8 endpoints) | `test_dependencies.py` |
+| AC-8 | Settlement zeroes balances          | `test_ac8_settlement_brings_balances_to_zero`       | `test_balance.py` |
 
 ## Failing → passing test run
 
-_TODO: link the saved runs in `docs/test-runs/`._
+Development followed TDD: the acceptance tests were written first, against an API whose
+business logic was stubbed with `NotImplementedError`.
+
+| Run | Result | Commit |
+|-----|--------|--------|
+| [`2026-11-03-acceptance-red.txt`](docs/test-runs/2026-11-03-acceptance-red.txt) | 12 failed, 66 passed — every business-logic test fails; AC-7 and schema-level AC-5 already pass | `ef03804` |
+| [`2026-11-03-acceptance-green.txt`](docs/test-runs/2026-11-03-acceptance-green.txt) | 131 passed — after implementing splitting, balances and debt simplification | _this commit_ |
 
 ## Dual-AI implementation (AC-4)
 
