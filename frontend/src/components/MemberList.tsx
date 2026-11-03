@@ -35,7 +35,7 @@ export function MemberList({ members, userNames, onRemove }: MemberListProps): R
 
   return (
     <>
-      <ul>{members.map(renderMember)}</ul>
+      <ul className="member-list">{members.map(renderMember)}</ul>
       {/* AC-6: the backend refuses (409) to remove a member whose balance is not zero. */}
       <ErrorMessage message={removal.error} />
     </>

@@ -50,26 +50,35 @@ export function LoginPage(): ReactElement {
 
   return (
     <main className="narrow">
+      <p className="brand">
+        SPLITTER<span className="brand-slash">/</span>
+      </p>
       <h1>Log in</h1>
-      <ErrorMessage message={users.error} />
-      <form onSubmit={handleLogIn}>
-        <label htmlFor="login-user">User</label>
-        <select id="login-user" value={selectedUserId} onChange={handleUserChange} required>
-          <option value="" disabled>
-            Choose a user…
-          </option>
-          {users.data?.map(renderUserOption)}
-        </select>
-        <button type="submit">Log in</button>
-      </form>
+      <p className="meta">NO PASSWORD — PICK WHO YOU ARE</p>
 
-      <h2>New user</h2>
-      <form onSubmit={handleCreateUser}>
-        <label htmlFor="new-user-name">Name</label>
-        <input id="new-user-name" value={newUserName} onChange={handleNameChange} required />
-        <button type="submit">Create and log in</button>
-      </form>
-      <ErrorMessage message={creation.error} />
+      <section className="panel">
+        <ErrorMessage message={users.error} />
+        <form className="stacked" onSubmit={handleLogIn}>
+          <label htmlFor="login-user">User</label>
+          <select id="login-user" value={selectedUserId} onChange={handleUserChange} required>
+            <option value="" disabled>
+              Choose a user…
+            </option>
+            {users.data?.map(renderUserOption)}
+          </select>
+          <button type="submit">Log in</button>
+        </form>
+      </section>
+
+      <section className="panel">
+        <h2>New user</h2>
+        <form className="stacked" onSubmit={handleCreateUser}>
+          <label htmlFor="new-user-name">Name</label>
+          <input id="new-user-name" value={newUserName} onChange={handleNameChange} required />
+          <button type="submit">Create and log in</button>
+        </form>
+        <ErrorMessage message={creation.error} />
+      </section>
     </main>
   )
 }

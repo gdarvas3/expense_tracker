@@ -40,15 +40,17 @@ export function GroupListPage(): ReactElement {
       <h1>My groups</h1>
       <ErrorMessage message={groups.error} />
       {groups.data?.length === 0 && <p>You are not a member of any group yet.</p>}
-      <ul>{groups.data?.map(renderGroupLink)}</ul>
+      <ul className="group-list">{groups.data?.map(renderGroupLink)}</ul>
 
-      <h2>New group</h2>
-      <form onSubmit={handleCreateGroup}>
-        <label htmlFor="new-group-name">Name</label>
-        <input id="new-group-name" value={newGroupName} onChange={handleNameChange} required />
-        <button type="submit">Create group</button>
-      </form>
-      <ErrorMessage message={creation.error} />
+      <section className="panel">
+        <h2>New group</h2>
+        <form onSubmit={handleCreateGroup}>
+          <label htmlFor="new-group-name">Name</label>
+          <input id="new-group-name" value={newGroupName} onChange={handleNameChange} required />
+          <button type="submit">Create group</button>
+        </form>
+        <ErrorMessage message={creation.error} />
+      </section>
     </>
   )
 }

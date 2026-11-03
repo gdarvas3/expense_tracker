@@ -11,10 +11,15 @@ export function RequireUser(): ReactElement {
   return (
     <>
       <header className="app-header">
-        <span>Logged in as {user.name}</span>
-        <button type="button" onClick={logOut}>
-          Log out
-        </button>
+        <span className="brand">
+          SPLITTER<span className="brand-slash">/</span>
+        </span>
+        <nav aria-label="Account" className="account">
+          <span>Logged in as {user.name}</span>
+          <button type="button" onClick={logOut}>
+            Log out
+          </button>
+        </nav>
       </header>
       <main>
         <Outlet />

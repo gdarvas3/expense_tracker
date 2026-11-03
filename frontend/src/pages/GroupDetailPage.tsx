@@ -120,60 +120,81 @@ export function GroupDetailPage(): ReactElement {
 
   return (
     <>
-      <Link to="/">← My groups</Link>
-      <h1>{group.data.name}</h1>
+      <Link to="/" className="back-link">
+        ← My groups
+      </Link>
+      <div className="page-title">
+        <h1>{group.data.name}</h1>
+        <p className="meta">GROUP #{group.data.id} · {members.length} MEMBERS</p>
+      </div>
 
-      <section>
-        <h2>Balances</h2>
-        <ErrorMessage message={balances.error} />
-        {balances.data && <BalanceList balances={balances.data} userNames={userNames} />}
+      <div className="group-layout">
+        {/* Decorative receipt framing; the table inside stays a plain, accessible table. */}
+        <section className="receipt" aria-labelledby="expenses-heading">
+          <p className="receipt-banner" aria-hidden="true">
+            *** SHARED EXPENSES ***
+          </p>
+          <h2 id="expenses-heading">Expenses</h2>
+          <ErrorMessage message={expenses.error} />
+          {expenses.data && <ExpenseList expenses={expenses.data} userNames={userNames} />}
+          <div className="receipt-footer" aria-hidden="true">
+            <div className="barcode" />
+            THANK YOU FOR SPLITTING FAIRLY
+          </div>
+        </section>
 
-        <h2>Settlement plan</h2>
-        <ErrorMessage message={plan.error} />
-        {plan.data && <SettlementPlan transfers={plan.data} userNames={userNames} />}
-      </section>
+        <div className="group-side">
+          <section className="panel">
+            <h2>Balances</h2>
+            <ErrorMessage message={balances.error} />
+            {balances.data && <BalanceList balances={balances.data} userNames={userNames} />}
+          </section>
 
-      <section>
-        <h2>Expenses</h2>
-        <ErrorMessage message={expenses.error} />
-        {expenses.data && <ExpenseList expenses={expenses.data} userNames={userNames} />}
+          <section>
+            <h2>Settlement plan</h2>
+            <ErrorMessage message={plan.error} />
+            {plan.data && <SettlementPlan transfers={plan.data} userNames={userNames} />}
+          </section>
 
-        <h3>Add an expense</h3>
-        <ExpenseForm
-          key={membershipKey}
-          members={members}
-          userNames={userNames}
-          defaultPayerId={user.id}
-          onSubmit={handleAddExpense}
-        />
-      </section>
+          <section className="panel">
+            <h2>Add an expense</h2>
+            <ExpenseForm
+              key={membershipKey}
+              members={members}
+              userNames={userNames}
+              defaultPayerId={user.id}
+              onSubmit={handleAddExpense}
+            />
+          </section>
 
-      <section>
-        <h2>Record a payment</h2>
-        <SettlementForm
-          key={membershipKey}
-          members={members}
-          userNames={userNames}
-          defaultPayerId={user.id}
-          onSubmit={handleRecordSettlement}
-        />
-      </section>
+          <section className="panel">
+            <h2>Record a payment</h2>
+            <SettlementForm
+              key={membershipKey}
+              members={members}
+              userNames={userNames}
+              defaultPayerId={user.id}
+              onSubmit={handleRecordSettlement}
+            />
+          </section>
 
-      <section>
-        <h2>Members</h2>
-        <MemberList
-          members={members}
-          userNames={userNames}
-          onRemove={isAdmin ? handleRemoveMember : undefined}
-        />
-        {isAdmin && (
-          <AddMemberForm
-            candidateIds={candidateIds}
-            userNames={userNames}
-            onAdd={handleAddMember}
-          />
-        )}
-      </section>
+          <section className="panel">
+            <h2>Members</h2>
+            <MemberList
+              members={members}
+              userNames={userNames}
+              onRemove={isAdmin ? handleRemoveMember : undefined}
+            />
+            {isAdmin && (
+              <AddMemberForm
+                candidateIds={candidateIds}
+                userNames={userNames}
+                onAdd={handleAddMember}
+              />
+            )}
+          </section>
+        </div>
+      </div>
     </>
   )
 }

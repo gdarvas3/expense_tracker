@@ -12,15 +12,13 @@ export function BalanceList({ balances, userNames }: BalanceListProps): ReactEle
     return (
       <tr key={balance.user_id}>
         <td>{userNames.get(balance.user_id) ?? `User ${balance.user_id}`}</td>
-        <td className={balance.net.startsWith('-') ? 'amount negative' : 'amount'}>
-          {balance.net}
-        </td>
+        <td className={`amount ${signClassOf(balance.net)}`}>{balance.net}</td>
       </tr>
     )
   }
 
   return (
-    <table>
+    <table aria-label="Balances">
       <thead>
         <tr>
           <th>Member</th>
@@ -30,4 +28,15 @@ export function BalanceList({ balances, userNames }: BalanceListProps): ReactEle
       <tbody>{balances.map(renderBalance)}</tbody>
     </table>
   )
+}
+
+/** Matches "0", "0.00" or "-0.00": a settled member gets no colour. */
+const ZERO_AMOUNT = /^-?0+(\.0+)?$/
+
+/** Colour class for a decimal string; no money arithmetic, only its sign. */
+function signClassOf(amount: string): string {
+  if (ZERO_AMOUNT.test(amount)) {
+    return ''
+  }
+  return amount.startsWith('-') ? 'negative' : 'positive'
 }

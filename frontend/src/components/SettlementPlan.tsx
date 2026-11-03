@@ -14,8 +14,13 @@ export function SettlementPlan({ transfers, userNames }: SettlementPlanProps): R
 
   function renderTransfer(transfer: Transfer): ReactElement {
     return (
-      <li key={`${transfer.from_user_id}-${transfer.to_user_id}`}>
-        {nameOf(transfer.from_user_id)} pays {nameOf(transfer.to_user_id)} {transfer.amount}
+      <li key={`${transfer.from_user_id}-${transfer.to_user_id}`} className="slip">
+        <span className="slip-label" aria-hidden="true">
+          IOU
+        </span>
+        <span className="slip-text">
+          {nameOf(transfer.from_user_id)} pays {nameOf(transfer.to_user_id)} {transfer.amount}
+        </span>
       </li>
     )
   }
@@ -23,5 +28,5 @@ export function SettlementPlan({ transfers, userNames }: SettlementPlanProps): R
   if (transfers.length === 0) {
     return <p>Everyone is settled up.</p>
   }
-  return <ul>{transfers.map(renderTransfer)}</ul>
+  return <ul className="slips">{transfers.map(renderTransfer)}</ul>
 }
