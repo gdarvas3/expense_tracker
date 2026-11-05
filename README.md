@@ -106,12 +106,12 @@ _TODO: compare the two debt-simplification implementations._
 
 ### Case 2
 
-- **Problem:**
-- **Tool:**
-- **Prompt:**
-- **Suggestion:**
-- **User decision:**
-- **Verification:**
+- **Problem:** The React frontend worked but had no real design: a plain default stylesheet in GitHub style. We needed a modern look for the main screen. The existing frontend tests had to keep passing. No new dependecies.
+- **Tool:** Claude Code (Claude Opus 5.5). The designs were made with the `/design` command.
+- **Prompt:** "/design lets implement the ui design. give me 5 modern suitable designs", "design 5th option in 3 other colors. Label it: 5A 5B 5C", "My choice is: 5C · Night shift"
+- **Suggestion:** Claude made five directions for the group detail page, all with the same consistent sample data: (1) Ledger, Swiss minimal; (2) Soft, card-based fintech; (3) Midnight, dark dashboard; (4) Bold, neo-brutalist; (5) Receipt, with the expenses shown as a printed receipt and the settlement-plan transfers as "IOU" slips. It recommended Ledger as the easiest to port. Asked for three colour variants of Receipt, it made 5A Terracotta, 5B Blueprint and 5C Night shift.
+- **User decision:** rejected the recommended option, decided to ask for 3 new variants of the receipt option. And then picked the 5C nightshift option. 
+- **Verification:** `npm test` gave 22/22 passing both before and after the change, with no test modified. `npm run lint` and `npm run typecheck` were clean. A manual check in the browser (login, group list, group detail) at 1280 px and 375 px width showed no horizontal overflow and confirmed the fonts load.
 
 ### Case 3
 
