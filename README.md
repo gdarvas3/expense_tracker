@@ -8,6 +8,37 @@ debt-settlement plan.
 - **Frontend:** React, TypeScript, Vite
 - **AI rules:** [`AGENTS.md`](AGENTS.md) — shared instructions for all AI assistants
 
+## Project status
+
+_Last updated: 2026-11-12._
+
+The main user workflow works end to end, through both the REST API and the web UI:
+
+1. Log in as an existing user or create a new one.
+2. Create a group (the creator becomes its admin) and, as admin, add or remove members.
+3. Record an expense with an equal, percentage or exact split.
+4. See every member's net balance and the simplified settlement plan.
+5. Record a payment between two members; the balances and the plan update.
+
+| Area | State |
+|------|-------|
+| Backend API: users, groups, members, expenses, settlements, balances, settlement plan | Done — AC-1 … AC-8 covered by acceptance tests; 131 tests pass |
+| Frontend: login, group list, group page with expense, payment and member forms | Done — 22 tests pass; lint and typecheck are clean |
+| Dual-AI implementation of debt simplification (AC-4) | In progress — only the Claude Code variant exists; the second tool's variant and the comparison are still to do |
+| AI decision log | 2 of 3 cases recorded |
+
+Known limitations:
+
+- No real authentication: the caller is identified by the `X-User-Id` header, without
+  passwords or tokens (out of scope for the assignment).
+- Expenses and settlements cannot be edited or deleted; recorded settlements are visible
+  only through their effect on the balances.
+- Local development setup only: a SQLite file database, no deployment or CI configuration.
+
+The development history is documented by the git log (small, focused commits), the saved
+[failing → passing test runs](#failing--passing-test-run) and the
+[AI decision log](#ai-decision-log).
+
 ## Setup
 
 Requirements: Python 3.12+, Node.js 20+.
