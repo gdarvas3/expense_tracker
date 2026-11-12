@@ -22,9 +22,9 @@ The main user workflow works end to end, through both the REST API and the web U
 
 | Area | State |
 |------|-------|
-| Backend API: users, groups, members, expenses, settlements, balances, settlement plan | Done — AC-1 … AC-8 covered by acceptance tests; 131 tests pass |
+| Backend API: users, groups, members, expenses, settlements, balances, settlement plan | Done — AC-1 … AC-8 covered by acceptance tests; 143 tests pass |
 | Frontend: login, group list, group page with expense, payment and member forms | Done — 22 tests pass; lint and typecheck are clean |
-| Dual-AI implementation of debt simplification (AC-4) | In progress — only the Claude Code variant exists; the second tool's variant and the comparison are still to do |
+| Dual-AI implementation of debt simplification (AC-4) | Done — the Claude Code and the GitHub Copilot variants pass the same tests; see the [comparison](#dual-ai-implementation-ac-4) |
 | AI decision log | 2 of 3 cases recorded |
 
 Known limitations:
@@ -131,7 +131,80 @@ failing run shows assertion failures of the real tests, not import errors.
 
 ## Dual-AI implementation (AC-4)
 
-_TODO: compare the two debt-simplification implementations._
+The debt-simplification algorithm was written twice, by two different AI tools, behind one
+interface — `simplify_debts(balances: dict[int, int]) -> list[Transfer]`, see
+[`AGENTS.md`](AGENTS.md) §5. `backend/tests/test_settlement.py` is parametrized over both
+variants, so every test runs against each of them.
+
+| | Claude Code | GitHub Copilot |
+|---|---|---|
+| Model | Opus 5.5 | Copilot Fusion |
+| File | [`claude_code.py`](backend/app/services/settlement/claude_code.py) | [`copilot.py`](backend/app/services/settlement/copilot.py) |
+| Commit | `01df994` | `5d11167` |
+| Data structure | one dict of the open balances | two `heapq` heaps: debtors and creditors |
+| Finding the largest debtor and creditor | linear scan with `max()` in every round | heap pop; an unsettled remainder is pushed back |
+| Time complexity for n members | O(n²) | O(n log n) |
+| Tie-break by ascending user ID | negated IDs in the `max()` key | natural ordering of `(-amount, user_id)` tuples |
+| Structure | 4 small functions, 40 non-blank lines | 1 function, 41 non-blank lines |
+| Unbalanced input | `ValueError` | `ValueError` |
+
+### Correctness
+
+Both variants pass the same 12 unit tests. The Copilot variant was added test-first, like
+the rest of the project:
+
+| Run | Result |
+|-----|--------|
+| [`2026-11-12-copilot-settlement-red.txt`](docs/test-runs/2026-11-12-copilot-settlement-red.txt) | 12 failed, 12 passed — every `[copilot]` case fails on the `NotImplementedError` stub |
+| [`2026-11-12-copilot-settlement-green.txt`](docs/test-runs/2026-11-12-copilot-settlement-green.txt) | 143 passed — the whole backend suite, both variants included |
+
+Beyond the unit tests, a differential check fed 5,000 random balanced inputs (2–30 members,
+about a third of them with forced ties) to both variants: they returned identical transfer
+lists every time.
+
+### Performance
+
+Best wall-clock time of one call on a random balanced input (Python 3.14):
+
+| Members | Claude Code | GitHub Copilot |
+|--------:|------------:|---------------:|
+| 4       | 0.006 ms    | 0.003 ms       |
+| 20      | 0.05 ms     | 0.02 ms        |
+| 100     | 0.66 ms     | 0.17 ms        |
+| 1,000   | 60 ms       | 1.1 ms         |
+| 2,000   | 280 ms      | 2.4 ms         |
+
+The heap-based variant is faster at every size and scales far better. For a household or a
+travel group both finish in microseconds, so the difference cannot be observed in the
+application.
+
+### Code quality
+
+Measured against the Clean Code rules in [`AGENTS.md`](AGENTS.md) §6.1:
+
+- **Claude Code** follows the project rules more closely: small single-purpose functions,
+  absolute imports like the rest of the code base, and a docstring that documents the
+  `ValueError`. Its weak points are the quadratic algorithm, the negated-ID trick that
+  needs a comment to be understood, and a helper (`settle_largest_pair`) that both mutates
+  its argument and returns a value.
+- **GitHub Copilot** chose the more efficient algorithm, and its tie-break needs no trick.
+  Its weak points are structural: the whole algorithm is one 40-line function that mixes
+  levels of abstraction, it uses a relative import, its one-line docstring does not mention
+  the `ValueError`, and it contains leftovers (an unneeded `dict(balances)` copy, `-abs()`
+  on a value that is already negative).
+
+### Notes on the comparison
+
+- The two tools did not work under identical conditions. The unit tests were committed
+  together with the Claude Code variant (`01df994`), so they fix the exact order of the
+  transfers; Copilot implemented against this finished test suite and was instructed not
+  to read `claude_code.py`.
+- The differential check and the timings were run once with an ad-hoc script that is not
+  part of the repository.
+- This comparison was drafted with Claude Code, one of the two tools compared.
+
+The API uses the Claude Code variant (`backend/app/services/settlement/__init__.py`).
+Because both variants return identical plans, switching is a one-line import change.
 
 ## AI decision log
 
