@@ -7,12 +7,13 @@ from collections.abc import Callable
 
 import pytest
 
-from app.services.settlement import Transfer, claude_code
+from app.services.settlement import Transfer, claude_code, copilot
 
 SimplifyDebts = Callable[[dict[int, int]], list[Transfer]]
 
 IMPLEMENTATIONS = [
     pytest.param(claude_code.simplify_debts, id="claude_code"),
+    pytest.param(copilot.simplify_debts, id="copilot"),
 ]
 
 

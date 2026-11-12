@@ -1,0 +1,343 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.5, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\gabor.darvas\source\MSC2\expense_tracker\backend\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\gabor.darvas\source\MSC2\expense_tracker\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 24 items
+
+tests/test_settlement.py::test_transitive_debt_becomes_one_transfer[claude_code] PASSED [  4%]
+tests/test_settlement.py::test_transitive_debt_becomes_one_transfer[copilot] FAILED [  8%]
+tests/test_settlement.py::test_settled_group_needs_no_transfers[claude_code-no-members] PASSED [ 12%]
+tests/test_settlement.py::test_settled_group_needs_no_transfers[claude_code-all-settled] PASSED [ 16%]
+tests/test_settlement.py::test_settled_group_needs_no_transfers[copilot-no-members] FAILED [ 20%]
+tests/test_settlement.py::test_settled_group_needs_no_transfers[copilot-all-settled] FAILED [ 25%]
+tests/test_settlement.py::test_one_debtor_pays_creditors_largest_first[claude_code] PASSED [ 29%]
+tests/test_settlement.py::test_one_debtor_pays_creditors_largest_first[copilot] FAILED [ 33%]
+tests/test_settlement.py::test_equal_debtors_pay_in_ascending_user_id_order[claude_code] PASSED [ 37%]
+tests/test_settlement.py::test_equal_debtors_pay_in_ascending_user_id_order[copilot] FAILED [ 41%]
+tests/test_settlement.py::test_greedy_always_matches_current_largest_debtor_and_creditor[claude_code] PASSED [ 45%]
+tests/test_settlement.py::test_greedy_always_matches_current_largest_debtor_and_creditor[copilot] FAILED [ 50%]
+tests/test_settlement.py::test_transfers_settle_every_balance[claude_code-balances0] PASSED [ 54%]
+tests/test_settlement.py::test_transfers_settle_every_balance[claude_code-balances1] PASSED [ 58%]
+tests/test_settlement.py::test_transfers_settle_every_balance[claude_code-balances2] PASSED [ 62%]
+tests/test_settlement.py::test_transfers_settle_every_balance[claude_code-balances3] PASSED [ 66%]
+tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances0] FAILED [ 70%]
+tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances1] FAILED [ 75%]
+tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances2] FAILED [ 79%]
+tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances3] FAILED [ 83%]
+tests/test_settlement.py::test_input_balances_are_not_modified[claude_code] PASSED [ 87%]
+tests/test_settlement.py::test_input_balances_are_not_modified[copilot] FAILED [ 91%]
+tests/test_settlement.py::test_unbalanced_input_is_rejected[claude_code] PASSED [ 95%]
+tests/test_settlement.py::test_unbalanced_input_is_rejected[copilot] FAILED [100%]
+
+================================== FAILURES ===================================
+_____________ test_transitive_debt_becomes_one_transfer[copilot] ______________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+
+    def test_transitive_debt_becomes_one_transfer(simplify_debts: SimplifyDebts) -> None:
+        # AC-4: A (1) owes B (2) 50, B owes C (3) 50 → B nets to zero.
+>       transfers = simplify_debts({1: -5000, 2: 0, 3: 5000})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: -5000, 2: 0, 3: 5000}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+__________ test_settled_group_needs_no_transfers[copilot-no-members] __________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>, balances = {}
+
+    @pytest.mark.parametrize("balances", [{}, {1: 0, 2: 0}], ids=["no-members", "all-settled"])
+    def test_settled_group_needs_no_transfers(
+        simplify_debts: SimplifyDebts, balances: dict[int, int]
+    ) -> None:
+>       assert simplify_debts(balances) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+_________ test_settled_group_needs_no_transfers[copilot-all-settled] __________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+balances = {1: 0, 2: 0}
+
+    @pytest.mark.parametrize("balances", [{}, {1: 0, 2: 0}], ids=["no-members", "all-settled"])
+    def test_settled_group_needs_no_transfers(
+        simplify_debts: SimplifyDebts, balances: dict[int, int]
+    ) -> None:
+>       assert simplify_debts(balances) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: 0, 2: 0}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+____________ test_one_debtor_pays_creditors_largest_first[copilot] ____________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+
+    def test_one_debtor_pays_creditors_largest_first(simplify_debts: SimplifyDebts) -> None:
+>       transfers = simplify_debts({1: -9000, 2: 4000, 3: 5000})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: -9000, 2: 4000, 3: 5000}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+_________ test_equal_debtors_pay_in_ascending_user_id_order[copilot] __________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+
+    def test_equal_debtors_pay_in_ascending_user_id_order(simplify_debts: SimplifyDebts) -> None:
+        # AC-1 balances: three members owe the payer 25.00 each.
+>       transfers = simplify_debts({1: 7500, 2: -2500, 3: -2500, 4: -2500})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: 7500, 2: -2500, 3: -2500, 4: -2500}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+___ test_greedy_always_matches_current_largest_debtor_and_creditor[copilot] ___
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+
+    def test_greedy_always_matches_current_largest_debtor_and_creditor(
+        simplify_debts: SimplifyDebts,
+    ) -> None:
+        # Round 1: 1 (-60) → 3 (+70) 60.  Round 2: 2 (-40) → 4 (+30) 30.  Round 3: 2 (-10) → 3 (+10).
+>       transfers = simplify_debts({1: -6000, 2: -4000, 3: 7000, 4: 3000})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: -6000, 2: -4000, 3: 7000, 4: 3000}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+___________ test_transfers_settle_every_balance[copilot-balances0] ____________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+balances = {1: 7500, 2: -2500, 3: -2500, 4: -2500}
+
+    @pytest.mark.parametrize(
+        "balances",
+        [
+            {1: 7500, 2: -2500, 3: -2500, 4: -2500},
+            {1: -1, 2: -1, 3: 2},
+            {1: 12345, 2: -6789, 3: -5556, 4: 0, 5: 3000, 6: -3000},
+            {user_id: (user_id % 5 - 2) * 101 for user_id in range(1, 21)},
+        ],
+    )
+    def test_transfers_settle_every_balance(
+        simplify_debts: SimplifyDebts, balances: dict[int, int]
+    ) -> None:
+>       transfers = simplify_debts(balances)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: 7500, 2: -2500, 3: -2500, 4: -2500}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+___________ test_transfers_settle_every_balance[copilot-balances1] ____________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+balances = {1: -1, 2: -1, 3: 2}
+
+    @pytest.mark.parametrize(
+        "balances",
+        [
+            {1: 7500, 2: -2500, 3: -2500, 4: -2500},
+            {1: -1, 2: -1, 3: 2},
+            {1: 12345, 2: -6789, 3: -5556, 4: 0, 5: 3000, 6: -3000},
+            {user_id: (user_id % 5 - 2) * 101 for user_id in range(1, 21)},
+        ],
+    )
+    def test_transfers_settle_every_balance(
+        simplify_debts: SimplifyDebts, balances: dict[int, int]
+    ) -> None:
+>       transfers = simplify_debts(balances)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: -1, 2: -1, 3: 2}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+___________ test_transfers_settle_every_balance[copilot-balances2] ____________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+balances = {1: 12345, 2: -6789, 3: -5556, 4: 0, ...}
+
+    @pytest.mark.parametrize(
+        "balances",
+        [
+            {1: 7500, 2: -2500, 3: -2500, 4: -2500},
+            {1: -1, 2: -1, 3: 2},
+            {1: 12345, 2: -6789, 3: -5556, 4: 0, 5: 3000, 6: -3000},
+            {user_id: (user_id % 5 - 2) * 101 for user_id in range(1, 21)},
+        ],
+    )
+    def test_transfers_settle_every_balance(
+        simplify_debts: SimplifyDebts, balances: dict[int, int]
+    ) -> None:
+>       transfers = simplify_debts(balances)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: 12345, 2: -6789, 3: -5556, 4: 0, ...}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+___________ test_transfers_settle_every_balance[copilot-balances3] ____________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+balances = {1: -101, 2: 0, 3: 101, 4: 202, ...}
+
+    @pytest.mark.parametrize(
+        "balances",
+        [
+            {1: 7500, 2: -2500, 3: -2500, 4: -2500},
+            {1: -1, 2: -1, 3: 2},
+            {1: 12345, 2: -6789, 3: -5556, 4: 0, 5: 3000, 6: -3000},
+            {user_id: (user_id % 5 - 2) * 101 for user_id in range(1, 21)},
+        ],
+    )
+    def test_transfers_settle_every_balance(
+        simplify_debts: SimplifyDebts, balances: dict[int, int]
+    ) -> None:
+>       transfers = simplify_debts(balances)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_settlement.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: -101, 2: 0, 3: 101, 4: 202, ...}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+________________ test_input_balances_are_not_modified[copilot] ________________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+
+    def test_input_balances_are_not_modified(simplify_debts: SimplifyDebts) -> None:
+        balances = {1: -5000, 2: 5000}
+    
+>       simplify_debts(balances)
+
+tests\test_settlement.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: -5000, 2: 5000}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+_________________ test_unbalanced_input_is_rejected[copilot] __________________
+
+simplify_debts = <function simplify_debts at 0x000001C4962801A0>
+
+    def test_unbalanced_input_is_rejected(simplify_debts: SimplifyDebts) -> None:
+        with pytest.raises(ValueError):
+>           simplify_debts({1: -5000, 2: 4000})
+
+tests\test_settlement.py:99: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+balances = {1: -5000, 2: 4000}
+
+    def simplify_debts(balances: dict[int, int]) -> list[Transfer]:
+        """Simplify balanced debts into deterministic transfers."""
+>       raise NotImplementedError
+E       NotImplementedError
+
+app\services\settlement\copilot.py:8: NotImplementedError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\gabor.darvas\source\MSC2\expense_tracker\backend\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_settlement.py::test_transitive_debt_becomes_one_transfer[copilot]
+FAILED tests/test_settlement.py::test_settled_group_needs_no_transfers[copilot-no-members]
+FAILED tests/test_settlement.py::test_settled_group_needs_no_transfers[copilot-all-settled]
+FAILED tests/test_settlement.py::test_one_debtor_pays_creditors_largest_first[copilot]
+FAILED tests/test_settlement.py::test_equal_debtors_pay_in_ascending_user_id_order[copilot]
+FAILED tests/test_settlement.py::test_greedy_always_matches_current_largest_debtor_and_creditor[copilot]
+FAILED tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances0]
+FAILED tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances1]
+FAILED tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances2]
+FAILED tests/test_settlement.py::test_transfers_settle_every_balance[copilot-balances3]
+FAILED tests/test_settlement.py::test_input_balances_are_not_modified[copilot]
+FAILED tests/test_settlement.py::test_unbalanced_input_is_rejected[copilot]
+================== 12 failed, 12 passed, 1 warning in 0.25s ===================
